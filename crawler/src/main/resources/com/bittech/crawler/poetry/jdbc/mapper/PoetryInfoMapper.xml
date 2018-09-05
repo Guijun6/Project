@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bittech.crawler.poetry.jdbc.mapper.PoetryInfoMapper">
+
+
+    <resultMap id="poetryInfo" type="PoetryInfo">
+
+        <id property="metaId" column="meta_id" javaType="String" jdbcType="VARCHAR"/>
+        <result property="metaUrl" column="meta_url" javaType="String" jdbcType="VARCHAR"/>
+        <result property="metaCreate" column="meta_create" javaType="Date" jdbcType="DATE"/>
+
+        <result property="authorName" column="author_name" javaType="String" jdbcType="VARCHAR"/>
+        <result property="authorDynasty" column="author_dynasty" javaType="String" jdbcType="VARCHAR"/>
+
+        <result property="contentTitle" column="content_title" javaType="String" jdbcType="VARCHAR"/>
+        <result property="contentBody" column="content_body" javaType="String" jdbcType="LONGVARBINARY"/>
+
+    </resultMap>
+
+
+
+    <sql id="base_filed">
+        meta_id, meta_url, meta_create,
+        author_name, author_dynasty,
+        content_title, content_body
+    </sql>
+
+
+    <insert id="insertPoetryInfo" parameterType="PoetryInfo">
+        INSERT INTO t_poetry_info
+        (
+           <include refid="base_filed"/>
+        )
+        VALUES
+        (
+           #{metaId},
+           #{metaUrl},
+           #{metaCreate},
+           #{authorName},
+           #{authorDynasty},
+           #{contentTitle},
+           #{contentBody}
+        )
+    </insert>
+
+
+    <select id="queryPoetryInfoByAuthor" parameterType="string" resultMap="poetryInfo">
+        SELECT <include refid="base_filed"/> FROM t_poetry_info
+        WHERE 1=1 AND author_name = #{author}
+    </select>
+
+</mapper>
