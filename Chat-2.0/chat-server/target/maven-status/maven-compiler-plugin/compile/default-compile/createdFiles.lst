@@ -1,0 +1,7 @@
+com\jason\chat\server\service\ChatService.class
+com\jason\chat\server\jdbcutil\JdbcUtil.class
+com\jason\chat\server\warehouse\WareHouse.class
+com\jason\chat\server\entity\ChatInfo.class
+com\jason\chat\server\ServiceApplication.class
+com\jason\chat\server\dao\impl\ChatInfoDaoImpl.class
+com\jason\chat\server\dao\IChatInfoDao.class
